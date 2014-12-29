@@ -14,6 +14,7 @@
 		9BD4FE661A50EF0D00322044 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9BD4FE641A50EF0D00322044 /* LaunchScreen.xib */; };
 		9BD4FE721A50EF0D00322044 /* MapSampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD4FE711A50EF0D00322044 /* MapSampleTests.swift */; };
 		9BD4FE7C1A50EF7200322044 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BD4FE7B1A50EF7200322044 /* MapKit.framework */; };
+		9BD4FE7E1A512E7100322044 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9BD4FE7D1A512E7100322044 /* Images.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +39,7 @@
 		9BD4FE701A50EF0D00322044 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9BD4FE711A50EF0D00322044 /* MapSampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapSampleTests.swift; sourceTree = "<group>"; };
 		9BD4FE7B1A50EF7200322044 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		9BD4FE7D1A512E7100322044 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ../Images.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,17 +88,18 @@
 				9BD4FE5F1A50EF0D00322044 /* Main.storyboard */,
 				9BD4FE621A50EF0D00322044 /* Images.xcassets */,
 				9BD4FE641A50EF0D00322044 /* LaunchScreen.xib */,
-				9BD4FE591A50EF0D00322044 /* Supporting Files */,
+				9BD4FE591A50EF0D00322044 /* Resources */,
 			);
 			path = MapSample;
 			sourceTree = "<group>";
 		};
-		9BD4FE591A50EF0D00322044 /* Supporting Files */ = {
+		9BD4FE591A50EF0D00322044 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				9BD4FE7D1A512E7100322044 /* Images.xcassets */,
 				9BD4FE5A1A50EF0D00322044 /* Info.plist */,
 			);
-			name = "Supporting Files";
+			name = Resources;
 			sourceTree = "<group>";
 		};
 		9BD4FE6E1A50EF0D00322044 /* MapSampleTests */ = {
@@ -197,6 +200,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9BD4FE611A50EF0D00322044 /* Main.storyboard in Resources */,
+				9BD4FE7E1A512E7100322044 /* Images.xcassets in Resources */,
 				9BD4FE661A50EF0D00322044 /* LaunchScreen.xib in Resources */,
 				9BD4FE631A50EF0D00322044 /* Images.xcassets in Resources */,
 			);
