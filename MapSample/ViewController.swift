@@ -33,19 +33,28 @@ class MyAnnotation: NSObject, MKAnnotation {
     
     // MARK: class method
     class func createViewAnnotationForMapView(mapView: MKMapView, annotation: MKAnnotation) -> MKAnnotationView {
-        var returnedAnnotationView : MKAnnotationView! = mapView.dequeueReusableAnnotationViewWithIdentifier(NSStringFromClass(MyAnnotation))
+        println("annotation : \(annotation.title)")
+        var returnedAnnotationView : MKAnnotationView? = mapView.dequeueReusableAnnotationViewWithIdentifier(NSStringFromClass(MyAnnotation))
         
         if (returnedAnnotationView == nil) {
             returnedAnnotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: NSStringFromClass(MyAnnotation))
+            
+            println("reuseIdentifier : \(returnedAnnotationView?.reuseIdentifier)")
 
-        returnedAnnotationView.canShowCallout = true;
-        
-        returnedAnnotationView.centerOffset = CGPointMake( returnedAnnotationView.centerOffset.x + returnedAnnotationView.image.size.width/2, returnedAnnotationView.centerOffset.y - returnedAnnotationView.image.size.height/2 )
+            returnedAnnotationView?.canShowCallout = true;
+            println("\nreturnedAnnotationView.centerOffset : \(returnedAnnotationView?.centerOffset)\n")
+            
+            // returnedAnnotationView.imageはnil。Obj-Cではnilへのアクセスは無視されるが、
+            // Swiftだと以下の実行時エラー。どう解決する？
+            //   fatal error: unexpectedly found nil while unwrapping an Optional value
+            // centerOffsetの設定を
+            
+//            returnedAnnotationView!.centerOffset = CGPointMake( returnedAnnotationView!.centerOffset.x + returnedAnnotationView!.image.size.width/2, returnedAnnotationView!.centerOffset.y - returnedAnnotationView!.image.size.height/2 )
         } else {
-            returnedAnnotationView.annotation = annotation;
+            returnedAnnotationView?.annotation = annotation;
         }
         
-        return returnedAnnotationView;
+        return returnedAnnotationView!;
     }
 }
 
@@ -58,6 +67,7 @@ class ViewController: UIViewController, MKMapViewDelegate {
         
         // add Annotation
         var myAnnotation : MyAnnotation = MyAnnotation()
+        println("title : \(myAnnotation.title),\nlat : \(myAnnotation.coordinate.latitude)")
         self.myMapView.addAnnotation(myAnnotation)
         
         // go to default location
@@ -75,10 +85,16 @@ class ViewController: UIViewController, MKMapViewDelegate {
     // MARK: MKMapViewDelegate
     func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {
         
-        var returnedAnnotationView :MKAnnotationView? = MyAnnotation.createViewAnnotationForMapView(myMapView, annotation: annotation)
+        var returnedAnnotationView :MKAnnotationView? = MyAnnotation.createViewAnnotationForMapView(self.myMapView, annotation: annotation)
         
         returnedAnnotationView?.image = UIImage(named: "Image")
         // MARK: TODO 後でrightCalloutAccessoryViewにUIButton追加
+        var leftButton : UIButton? = UIButton.buttonWithType(UIButtonType.DetailDisclosure) as? UIButton
+
+        returnedAnnotationView?.rightCalloutAccessoryView = leftButton
+        
+        // 画像の位置修正
+        returnedAnnotationView!.centerOffset = CGPointMake( returnedAnnotationView!.centerOffset.x + returnedAnnotationView!.image.size.width/2, returnedAnnotationView!.centerOffset.y - returnedAnnotationView!.image.size.height/2 )
         
         return returnedAnnotationView
     }
